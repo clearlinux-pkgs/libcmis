@@ -4,7 +4,7 @@
 #
 Name     : libcmis
 Version  : 0.5.2
-Release  : 5
+Release  : 6
 URL      : https://dev-www.libreoffice.org/src/libcmis-0.5.2.tar.xz
 Source0  : https://dev-www.libreoffice.org/src/libcmis-0.5.2.tar.xz
 Summary  : CMIS protocol client library
@@ -37,6 +37,7 @@ Group: Development
 Requires: libcmis-lib = %{version}-%{release}
 Requires: libcmis-bin = %{version}-%{release}
 Provides: libcmis-devel = %{version}-%{release}
+Requires: libcmis = %{version}-%{release}
 
 %description dev
 dev components for the libcmis package.
@@ -61,31 +62,36 @@ license components for the libcmis package.
 
 %prep
 %setup -q -n libcmis-0.5.2
+cd %{_builddir}/libcmis-0.5.2
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1553127338
-export LDFLAGS="${LDFLAGS} -fno-lto"
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1592454636
+export GCC_IGNORE_WERROR=1
+export CFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$FFLAGS -fno-lto "
+export FFLAGS="$FFLAGS -fno-lto "
+export CXXFLAGS="$CXXFLAGS -fno-lto "
 %configure --disable-static --without-man --disable-werror
 make  %{?_smp_mflags}
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1553127338
+export SOURCE_DATE_EPOCH=1592454636
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libcmis
-cp COPYING.GPL %{buildroot}/usr/share/package-licenses/libcmis/COPYING.GPL
-cp COPYING.LGPL %{buildroot}/usr/share/package-licenses/libcmis/COPYING.LGPL
-cp COPYING.MPL %{buildroot}/usr/share/package-licenses/libcmis/COPYING.MPL
+cp %{_builddir}/libcmis-0.5.2/COPYING.GPL %{buildroot}/usr/share/package-licenses/libcmis/4cc77b90af91e615a64ae04893fdffa7939db84c
+cp %{_builddir}/libcmis-0.5.2/COPYING.LGPL %{buildroot}/usr/share/package-licenses/libcmis/01a6b4bf79aca9b556822601186afab86e8c4fbf
+cp %{_builddir}/libcmis-0.5.2/COPYING.MPL %{buildroot}/usr/share/package-licenses/libcmis/6b6d141fcb498eda127af240db4045d2aa53bb42
 %make_install
 
 %files
@@ -145,6 +151,6 @@ cp COPYING.MPL %{buildroot}/usr/share/package-licenses/libcmis/COPYING.MPL
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/libcmis/COPYING.GPL
-/usr/share/package-licenses/libcmis/COPYING.LGPL
-/usr/share/package-licenses/libcmis/COPYING.MPL
+/usr/share/package-licenses/libcmis/01a6b4bf79aca9b556822601186afab86e8c4fbf
+/usr/share/package-licenses/libcmis/4cc77b90af91e615a64ae04893fdffa7939db84c
+/usr/share/package-licenses/libcmis/6b6d141fcb498eda127af240db4045d2aa53bb42
