@@ -4,7 +4,7 @@
 #
 Name     : libcmis
 Version  : 0.5.2
-Release  : 7
+Release  : 8
 URL      : https://dev-www.libreoffice.org/src/libcmis-0.5.2.tar.xz
 Source0  : https://dev-www.libreoffice.org/src/libcmis-0.5.2.tar.xz
 Summary  : CMIS protocol client library
