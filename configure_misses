@@ -1,2 +1,4 @@
-Configure miss: stdbool.h that conforms to C99
 Configure miss: _Bool
+Configure miss: _Bool
+Configure miss: stdbool.h that conforms to C99
+Configure miss: stdbool.h that conforms to C99

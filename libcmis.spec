@@ -5,7 +5,7 @@
 #
 Name     : libcmis
 Version  : 0.5.2
-Release  : 10
+Release  : 11
 URL      : https://dev-www.libreoffice.org/src/libcmis-0.5.2.tar.xz
 Source0  : https://dev-www.libreoffice.org/src/libcmis-0.5.2.tar.xz
 Summary  : CMIS protocol client library
@@ -77,7 +77,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1683824528
+export SOURCE_DATE_EPOCH=1685636861
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
 export FCFLAGS="$FFLAGS -fdebug-types-section -femit-struct-debug-baseonly -fno-lto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
@@ -106,7 +106,7 @@ cd ../buildavx2;
 make %{?_smp_mflags} check || : || :
 
 %install
-export SOURCE_DATE_EPOCH=1683824528
+export SOURCE_DATE_EPOCH=1685636861
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libcmis
 cp %{_builddir}/libcmis-%{version}/COPYING.GPL %{buildroot}/usr/share/package-licenses/libcmis/4cc77b90af91e615a64ae04893fdffa7939db84c || :
@@ -128,8 +128,6 @@ popd
 
 %files dev
 %defattr(-,root,root,-)
-/V3/usr/lib64/libcmis-0.5.so
-/V3/usr/lib64/libcmis-c-0.5.so
 /usr/include/libcmis-0.5/libcmis/allowable-actions.hxx
 /usr/include/libcmis-0.5/libcmis/document.hxx
 /usr/include/libcmis-0.5/libcmis/exception.hxx
@@ -171,9 +169,7 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
-/V3/usr/lib64/libcmis-0.5.so.5
 /V3/usr/lib64/libcmis-0.5.so.5.0.0
-/V3/usr/lib64/libcmis-c-0.5.so.5
 /V3/usr/lib64/libcmis-c-0.5.so.5.0.0
 /usr/lib64/libcmis-0.5.so.5
 /usr/lib64/libcmis-0.5.so.5.0.0
